@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  ساخت کتاب
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <div class="card shadow my-3 p-5">
+      <form action="" method ='POST'>
+        <h2>ساخت کتاب جدید</h2>
+        {% csrf_token %}
+        {{form|crispy}}
+        <input class = "btn btn-success" type="submit" value = "ساخت">
+      </form>
+      <br>
+      <div class="container">
+        <a href="{% url 'book_list' %}">لیست کتاب ها</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+

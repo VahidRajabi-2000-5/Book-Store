@@ -1,0 +1,25 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  ویرایش کتاب {{book.title}}
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+    <div class="card shadow my-3 p-5">
+      <form action="" method ='POST'>
+        <h2>ویرایش کتاب {{book.title}}</h2>
+        {% csrf_token %}
+        {{form|crispy}}
+        <input class = "btn btn-success" type="submit" value = "ذخیره">
+      </form>
+      <br>
+      <div class="container">
+        <a href="{{book.get_absolute_url}}">بازگشت</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+

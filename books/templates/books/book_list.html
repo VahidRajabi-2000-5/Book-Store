@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block title %}
+  لیست کتاب ها
+{% endblock title %}
+
+{% block content %} 
+ <div class="container">
+    <div class="card shadow my-3 p-5">
+      <h1><a href="{% url 'book_create' %}">اضافه کردن کتاب جدی</a></h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="card shadow my-3 p-5">
+      {% for book in book %}
+        <h5>{{book.id}}</h5>
+        <h1>{{book.title}}</h1>
+        <p>{{book.description|truncatewords:10}} <a href="{{book.get_absolute_url}}">More</a></p>
+        {% endfor %}
+    </div>
+  </div>
+
+{% endblock content %}
+
