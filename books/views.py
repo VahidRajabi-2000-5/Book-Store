@@ -27,6 +27,7 @@ class BookCreateView(generic.CreateView):
         'author',
         'description',
         'price',
+        'cover',
     ]
     template_name = 'books/book_create.html'
     context_object_name = 'form'
@@ -38,6 +39,7 @@ class BookUpdateView(generic.UpdateView):
         'title',
         'author',
         'description',
+        'cover',
     ]
     template_name='books/book_update.html'
     context_object_name = 'form'    
