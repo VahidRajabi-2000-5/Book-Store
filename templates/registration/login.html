@@ -1,25 +1,38 @@
-{% extends '_base.html' %}
-{% load crispy_forms_tags %}
+{% extends '_base.html' %} 
 
-{% block title %}
-  Log In
-{% endblock title %}
+{% load crispy_forms_tags %} 
+{% load static %}
+
+{% block login_css %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock login_css %}
+
+{% block title %} Log In{% endblock title %} 
 
 {% block content %}
-  <div class="container">
-    <h2>Log In</h2>
-    <div class="card shadow my-3 p-5">
-      <form action="" method ='POST'>
-        {% csrf_token %}
-        {{form|crispy}}
-        <input class = "btn btn-success" type="submit" value = "LogIn">
-      </form>
-      <br>
-      <div class="container">
-        <a href="{% url 'password_reset' %}">Password Reser</a>
+<div class="d-flex justify-content-center mt-5" dir="rtl">
+  <div
+    class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-xs-6 bg-white m-3 m-sm-5 border rounded px-4 pt-4 pb-3 shadow"
+  >
+    <form method="post">
+      {% csrf_token %}
+      <h1 class="text-center">ورود</h1>
+      {{form|crispy}}
+      
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="mt-2">
+          <a class="text-decoration-none" href="{% url 'password_reset' %}">فراموشی رمز عبور</a>
+        </div>
       </div>
-    </div>
+      <button type="submit" class="btn btn-success mt-3 w-100">ورود</button>
+      <div class="line-with-middle-sep">
+      <span> یا </span>
+      </div>
+      <a href="{% url 'signup' %}" class="btn btn-primary mt-2 mb-3 w-100"
+        >ثبت نام</a
+      >
+    </form>
   </div>
+</div>
 
 {% endblock content %}
-

@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,7 +13,8 @@
       crossorigin="anonymous"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href={% static 'css/style.css' %} />
+    <link rel="stylesheet" href={% static 'css/style.css' %} /> {% block
+    login_css %}{% endblock login_css %}
     <title>{% block title %}{% endblock title %}</title>
   </head>
   <body>
@@ -20,13 +22,13 @@
       <div class="container">
         <a class="navbar-brand" href="#">
           <img
-            src="icons/book.png"
+            src="{% static 'icons/book.png' %}"
             alt=""
             height="30"
             class="d-inline-block align-text-top"
           />
         </a>
-        <a class="navbar-brand mx-3" href="#">کتاب یار</a>
+        <a class="navbar-brand mx-3" href="{% url 'book_list' %} ">کتاب یار</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -40,13 +42,32 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">خانه</a>
-            <a class="nav-link" href="#">اضافه کردن کتاب</a>
+            <a
+              class="nav-link active"
+              aria-current="page"
+              href="{% url 'home' %}"
+              >خانه</a
+            >
+            <a class="nav-link" href="{% url 'book_create' %}"
+              >اضافه کردن کتاب</a
+            >
           </div>
         </div>
         <div class="mx-2 text-white">
-          خوش آمدی محمدهادی |
-          <a class="link-light text-decoration-none" href="#">خروج</a>
+          {% if user.is_authenticated %} خوش آمدی {{user.username}} |
+          <a class="link-light text-decoration-none" href="{% url 'logout' %}"
+            >خروج</a
+          >
+
+          {% else %}
+          <a class="link-light text-decoration-none" href="{% url 'login' %}"
+            >ورود</a
+          >
+          یا
+          <a class="link-light text-decoration-none" href="{% url 'signup' %}"
+            >ثبت نام</a
+          >
+          {% endif %}
         </div>
       </div>
     </nav>
